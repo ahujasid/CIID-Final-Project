@@ -232,13 +232,15 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                         {
                             this.DrawBonesAndJoints(skel, dc);
                             Pose MyAngles = new Pose();
-                            double[] ReadyAngles = MyAngles.GetVector(skel);
-                            RightShoulder.Text = ReadyAngles[0].ToString();
-                            RightElbow.Text = ReadyAngles[1].ToString();
-                            RightHand.Text = ReadyAngles[2].ToString();
-                            LeftShoulder.Text = ReadyAngles[3].ToString();
-                            LeftElbow.Text = ReadyAngles[4].ToString();
-                            LeftHand.Text = ReadyAngles[5].ToString();
+                            MyAngles.GetVector(skel);
+                            RightShoulder.Text = MyAngles.AngleRightShoulder.ToString();
+                            RightElbow.Text = MyAngles.AngleRightElbow.ToString();
+                            RightHand.Text = MyAngles.AngleRightWrist.ToString();
+                            LeftShoulder.Text = MyAngles.AngleLeftShoulder.ToString();
+                            LeftElbow.Text = MyAngles.AngleLeftElbow.ToString();
+                            LeftHand.Text = MyAngles.AngleLeftWrist.ToString();
+                            MyAngles.checkPose(skel);
+                            Speech.Text = MyAngles.speechString;
                         }
                         else if (skel.TrackingState == SkeletonTrackingState.PositionOnly)
                         {
